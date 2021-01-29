@@ -9,7 +9,7 @@ import datetime
 # Класс карточек лото. Заполняется при создании экземплярв, как просили, произвольно, без совпадений 5 бочонков
 # в каждом ряду на произвольных местах в 3-х 9-тиместных рядах. Все можно поменять в параметрах ниже.
 class BarrelList:
-    def __init__(self, barrel_quantity=20, row_quantity=2, column_quantity=3, barrel_in_row=2):
+    def __init__(self, barrel_quantity=20, row_quantity=3, column_quantity=9, barrel_in_row=5):
         self.barrel_quantity = barrel_quantity
         self.row_quantity = row_quantity
         self.column_quantity = column_quantity
@@ -33,10 +33,6 @@ class BarrelList:
                     self.value_places[random_row_values[k]] = (i, j)
                     k += 1
             self.rows_list.append(random_row)
-
-    # def __str__(self):  #  Иван, спасибо за джойн из задания по матрицам
-    #     return '\n'.join([' '.join([(f'{elem} ' if len(str(elem)) == 1 else {elem})
-    #                                 for elem in line]) for line in self.rows_list])
 
 
 class Players:
@@ -71,7 +67,8 @@ class ComputerPlayers(Players):
         Players.count_players += 1
 
 
-class Game:  # По умолчанию 2 игрока, но можно хоть 10 из них сколько-то людей, сколько-то компьютеров
+class Game:  # По умолчанию 2 игрока, но можно хоть 10 из них сколько-то людей, сколько-то компьютеров, кол-во передаем
+    # аргументом при создании экземпляра
     turn_count = 0
 
     def __init__(self, player_quantity=2):
@@ -182,7 +179,7 @@ class Game:  # По умолчанию 2 игрока, но можно хоть 
             print(f'карточка игрока №{self.game_parameters[i]["number"]} - {self.game_parameters[i]["name"]} '
                   f'\n{barrel_list}')
 
-    @staticmethod
+    @staticmethod  # Из-за статикметода тут нет селфа, вызвать можно Game.save_info()
     def save_info(message=''):
         current_time = datetime.datetime.now()
         result = f'{current_time} - {message}'
@@ -190,7 +187,7 @@ class Game:  # По умолчанию 2 игрока, но можно хоть 
             f.write(result + '\n')
 
 
-a = Game(3)
+a = Game(3)  #  Запуск для троих игоков
 a.print_barrel_lists()
 game_parameters = a.game_parameters
 all_barrel_list = a.all_barrels_list
