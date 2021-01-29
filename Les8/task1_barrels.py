@@ -9,7 +9,7 @@ import datetime
 # Класс карточек лото. Заполняется при создании экземплярв, как просили, произвольно, без совпадений 5 бочонков
 # в каждом ряду на произвольных местах в 3-х 9-тиместных рядах. Все можно поменять в параметрах ниже.
 class BarrelList:
-    def __init__(self, barrel_quantity=20, row_quantity=3, column_quantity=9, barrel_in_row=5):
+    def __init__(self, barrel_quantity=90, row_quantity=3, column_quantity=9, barrel_in_row=5):
         self.barrel_quantity = barrel_quantity
         self.row_quantity = row_quantity
         self.column_quantity = column_quantity
